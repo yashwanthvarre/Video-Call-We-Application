@@ -1,6 +1,14 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
+import {
+  Box,
+  Button,
+  Flex,
+  Input,
+  VStack,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
 const socket = io.connect("http://localhost:3001");
 
@@ -65,79 +73,59 @@ export default function VideoCall() {
     }
   };
 
+  const inputBorderColor = useColorModeValue("gray.300", "gray.600");
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        minHeight: "100vh",
-        justifyContent: "center",
-        background: "#f0f0f5",
-        padding: "20px",
-      }}
+    <Flex
+      direction="column"
+      align="center"
+      minH="100vh"
+      justify="center"
+      bg={useColorModeValue("gray.50", "gray.800")}
+      p="20px"
     >
-      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
-        <input
+      <VStack spacing="4" mb="6">
+        <Input
           type="text"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
           placeholder="Enter phone number to call"
-          style={{
-            padding: "10px",
-            fontSize: "16px",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            transition: "border-color 0.3s",
-          }}
+          size="md"
+          borderColor={inputBorderColor}
+          borderRadius="md"
+          focusBorderColor="blue.400"
         />
-        <button
+        <Button
           onClick={startCall}
-          style={{
-            padding: "10px 20px",
-            fontSize: "16px",
-            border: "none",
-            backgroundColor: "#0070f3",
-            color: "white",
-            borderRadius: "8px",
-            cursor: "pointer",
-            transition: "background-color 0.3s, transform 0.2s",
-          }}
-          onMouseOver={(e) =>
-            (e.currentTarget.style.backgroundColor = "#005bb5")
-          }
-          onMouseOut={(e) =>
-            (e.currentTarget.style.backgroundColor = "#0070f3")
-          }
+          bg="blue.500"
+          color="white"
+          _hover={{ bg: "blue.600" }}
+          _active={{ transform: "scale(0.98)" }}
         >
           Call
-        </button>
-      </div>
-      <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
-        <video
+        </Button>
+      </VStack>
+      <Flex gap="6" mt="6">
+        <Box
+          as="video"
           ref={myVideo}
           autoPlay
           muted
-          style={{
-            width: "300px",
-            height: "200px",
-            borderRadius: "8px",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-            transition: "box-shadow 0.3s, transform 0.2s",
-          }}
+          w="300px"
+          h="200px"
+          borderRadius="md"
+          boxShadow="md"
         />
-        <video
+        <Box
+          as="video"
           ref={peerVideo}
           autoPlay
-          style={{
-            width: "300px",
-            height: "200px",
-            borderRadius: "8px",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-            transition: "box-shadow 0.3s, transform 0.2s",
-          }}
+          w="300px"
+          h="200px"
+          borderRadius="md"
+          boxShadow="md"
         />
-      </div>
-    </div>
+      </Flex>
+    </Flex>
   );
 }
