@@ -1,10 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+Video Calling App with WebRTC
 
-```bash
+This is a Next.js project bootstrapped with create-next-app.
+
+Getting Started
+
+Run the Signaling Server
+First, start the signaling server for WebRTC peer connection:
+
+bash
+Copy code
+node server.js
+Start the Development Server
+To run the app in development mode:
+
+bash
+Copy code
 npm run dev
 # or
 yarn dev
@@ -12,25 +24,22 @@ yarn dev
 pnpm dev
 # or
 bun dev
-```
+Open http://localhost:3000 in your browser to view the app.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You can start editing by modifying app/page.js. The page auto-updates as you edit the file.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Project Overview
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This app uses WebRTC for real-time video streaming and Socket.IO for signaling between peers. Users can enter a "phone number" as a unique room ID to start a call.
 
-## Learn More
+Learn More
 
-To learn more about Next.js, take a look at the following resources:
+For more details on the tools used in this project:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Next.js Documentation - learn about Next.js features.
+WebRTC Documentation - learn about real-time video communication.
+Socket.IO Documentation - understand real-time bidirectional communication.
+Deploy on Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The easiest way to deploy this app is on Vercel. Check out Next.js deployment documentation for details.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
